@@ -17,6 +17,18 @@ func (usecase *movieUsecase) GetAllMovie(ctx context.Context) ([]entity.Movies, 
 	return movies, nil
 }
 
+func (usecase *movieUsecase) GetMovieByTitle(ctx context.Context, title string) ([]entity.Movies, error) {
+	var movies []entity.Movies
+
+	// get movie from DB
+	movies, err := usecase.movieRepository.GetMovieByTitle(ctx, title)
+	if err != nil {
+		return movies, err
+	}
+
+	return movies, nil
+}
+
 func (usecase *movieUsecase) GetMovie(ctx context.Context, id int64) (*entity.Movies, error) {
 	// get movie from DB
 	movie, err := usecase.movieRepository.GetMovie(ctx, id)

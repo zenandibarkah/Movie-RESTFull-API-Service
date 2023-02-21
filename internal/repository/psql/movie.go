@@ -49,6 +49,46 @@ func (repo *postgresConnection) GetAllMovie(ctx context.Context) ([]entity.Movie
 	return movies, nil
 }
 
+func (repo *postgresConnection) GetMovieByTitle(ctx context.Context, title string) ([]entity.Movies, error) {
+	query := `
+			SELECT id, title, description, rating, image, created_at, update_at 
+				FROM movies WHERE lower(title) LIKE CONCAT('%%',$1::text,'%%')`
+
+	// Define the contect with 15 timeout
+	ctx, cancel := context.WithTimeout(ctx, 3*time.Second)
+	defer cancel()
+
+	var movies []entity.Movies
+
+	rows, err := repo.db.QueryContext(ctx, query, title)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	// fmt.Println(query)
+
+	for rows.Next() {
+		var movie entity.Movies
+
+		err := rows.Scan(
+			&movie.ID,
+			&movie.Title,
+			&movie.Description,
+			&movie.Rating,
+			&movie.Image,
+			&movie.CreatedAt,
+			&movie.UpdatedAt,
+		)
+		if err != nil {
+			return nil, err
+		}
+
+		movies = append(movies, movie)
+	}
+
+	return movies, nil
+}
+
 func (repo *postgresConnection) GetMovie(ctx context.Context, id int64) (*entity.Movies, error) {
 	query := `
 		SELECT id, title, description, rating, image, created_at, update_at 

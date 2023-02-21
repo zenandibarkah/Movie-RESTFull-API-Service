@@ -9,6 +9,10 @@ func (repo *movieRepository) GetAllMovie(ctx context.Context) ([]entity.Movies, 
 	return repo.postgres.GetAllMovie(ctx)
 }
 
+func (repo *movieRepository) GetMovieByTitle(ctx context.Context, title string) ([]entity.Movies, error) {
+	return repo.postgres.GetMovieByTitle(ctx, title)
+}
+
 func (repo *movieRepository) GetMovie(ctx context.Context, id int64) (*entity.Movies, error) {
 	return repo.postgres.GetMovie(ctx, id)
 }

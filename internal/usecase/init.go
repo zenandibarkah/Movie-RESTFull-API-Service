@@ -8,6 +8,7 @@ import (
 
 type MovieUsecase interface {
 	GetAllMovie(ctx context.Context) ([]entity.Movies, error)
+	GetMovieByTitle(ctx context.Context, title string) ([]entity.Movies, error)
 	GetMovie(ctx context.Context, id int64) (*entity.Movies, error)
 	CreateMovie(ctx context.Context, movie *entity.Movies) (*entity.Movies, error)
 	UpdateMovie(ctx context.Context, movie entity.Movies) (entity.Movies, error)

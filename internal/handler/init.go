@@ -8,6 +8,7 @@ import (
 
 type MovieHandler interface {
 	GetAllMovie(context *gin.Context)
+	GetMovieByTitle(context *gin.Context)
 	GetMovie(context *gin.Context)
 	CreateMovie(context *gin.Context)
 	UpdateMovie(context *gin.Context)

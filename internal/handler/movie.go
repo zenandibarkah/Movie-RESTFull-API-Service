@@ -24,6 +24,20 @@ func (handler *moviehandler) GetAllMovie(context *gin.Context) {
 	context.JSON(http.StatusOK, res)
 }
 
+func (handler *moviehandler) GetMovieByTitle(context *gin.Context) {
+	title := context.Param("title")
+
+	movies, err := handler.movieusecase.GetMovieByTitle(context, title)
+	if err != nil {
+		res := helper.BuildErrorResponse("Internal Server Error", err.Error(), helper.EmptyObj{})
+		context.AbortWithStatusJSON(http.StatusInternalServerError, res)
+		return
+	}
+
+	res := helper.BuildResponse(true, "OK!", movies)
+	context.JSON(http.StatusOK, res)
+}
+
 func (handler *moviehandler) GetMovie(context *gin.Context) {
 	// Get id from request param
 	id, err := strconv.ParseInt(context.Param("id"), 10, 64)

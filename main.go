@@ -45,6 +45,7 @@ func main() {
 	movieRoutes := r.Group("/Movies")
 	{
 		movieRoutes.GET("/", handler.Allhandler.GetAllMovie)
+		movieRoutes.GET("/search/:title", handler.Allhandler.GetMovieByTitle)
 		movieRoutes.GET("/:id", handler.Allhandler.GetMovie)
 		movieRoutes.POST("/", handler.Allhandler.CreateMovie)
 		movieRoutes.PATCH("/:id", handler.Allhandler.UpdateMovie)
