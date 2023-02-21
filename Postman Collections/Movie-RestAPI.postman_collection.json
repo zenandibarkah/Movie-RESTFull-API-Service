@@ -25,6 +25,14 @@
 			"response": []
 		},
 		{
+			"name": "Get Movie By Title",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
 			"name": "Get Movie",
 			"request": {
 				"method": "GET",
@@ -51,7 +59,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"title\": \"Pengabdi Setan \",\r\n    \"description\": \"\",\r\n    \"rating\": 8,\r\n    \"image\": \"\"\r\n}",
+					"raw": "{\r\n    \"title\": \"Pengabdi Setan \",\r\n    \"description\": \"Chapter 1 of Pengabdi Setan\",\r\n    \"rating\": 8,\r\n    \"image\": \"\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -80,7 +88,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"title\": \"test2\",\r\n    \"description\": \"test 2\",\r\n    \"rating\": 7,\r\n    \"image\": \"\"\r\n}",
+					"raw": "{\r\n    \"title\": \"A Man Called Otto\",\r\n    \"description\": \"\",\r\n    \"rating\": 9,\r\n    \"image\": \"\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -107,7 +115,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:4000/Movies/6",
+					"raw": "http://localhost:4000/Movies/7",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -115,7 +123,7 @@
 					"port": "4000",
 					"path": [
 						"Movies",
-						"6"
+						"7"
 					]
 				}
 			},
